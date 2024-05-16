@@ -3,33 +3,527 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Metrodata</title>
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Document</title>
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.11.1/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+    $(document).ready(function(){
+
+        $('#searchInput').on('keyup', function(){
+            console.log("teste")
+            var searchText = $(this).val().toLowerCase();
+            $('table tbody tr').each(function(){
+                var rowData = $(this).text().toLowerCase();
+                if(rowData.indexOf(searchText) === -1){
+                    $(this).hide();
+                } else {
+                    $(this).show();
+                }
+            });
+        });
+
+        $('#salvar').on('click', function(){
+        var cliente = $('[name="cliente"]').val();
+        var uf = $('[name="uf"]').val();
+        var numeroAcervo = $('[name="numero_acervo"]').val();
+        var dataInicio = $('[name="data_inicio"]').val();
+        var dataFinal = $('[name="data_final"]').val();
+        var descricao = $('textarea').val();
+        var unidade = $('[name="unidade"]').val();
+        var quantidade = $('[name="quantidade"]').val();
+
+        var newRow = '<tr>' +
+                        '<td>' + '<button class="btn btn-primary" onclick="my_modal_4.showModal()">Detalhes</button>' + '</td>' +
+                        '<td>' + cliente + '</td>' +
+                        '<td>' + uf + '</td>' +
+                        '<td>' + numeroAcervo + '</td>' +
+                        '<td>' + dataInicio + '</td>' +
+                        '<td>' + dataFinal + '</td>' +
+                        '<td>' + descricao + '</td>' +
+                        '<td>' + unidade + '</td>' +
+                        '<td>' + quantidade + '</td>' +
+                    '</tr>';
+
+            $('table tbody').append(newRow)
+        });
+    });
+</script>
+
 </head>
+<body>
 
-    <div class="valign-wrapper light-blue darken-3" style="width: 100%; height: 100%; position: absolute;">
-        <div class="valign" style="width:100%;">
-            <div class="container">
-            <div class="row">
-                <div class="col s12 m6 offset-m3">
-                    <div class="card">
-                        
-                        <div class="card-content center">
-                            <div>
-                                <img src="logo.png" width="300" height="100">
-                            </div>
-                            <div style="margin-top: 30px;">
-                                <a href="https://app.powerbi.com/view?r=eyJrIjoiMjExODgyODQtNzI0OS00NDI0LWExM2EtMGU1YjQ2OGEzMTI4IiwidCI6ImZmNDlkMzBjLWRhN2QtNGQxZi04ZTBjLTRkZGU5OWUwMjU0NCJ9" class="waves-effect blue-grey waves-light btn-large">Acessar Painel</a>
-                            </div>
-                        </div>
-                    </div>
+<dialog id="my_modal_4" class="modal">
+  <div class="modal-box w-11/12 max-w-5xl" style="color: white !important;">
+  <div>
+  <div class="px-4 sm:px-0">
+    <h3 class="text-base font-semibold leading-7">Applicant Information</h3>
+    <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Personal details and application.</p>
+  </div>
+  <div class="mt-6 border-t border-gray-100">
+    <dl class="divide-y divide-gray-100">
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <p class="text-sm font-medium leading-6">Full name</p>
+        <p class="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0">Margot Foster</p>
+      </div>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6">Application for</dt>
+        <dd class="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0">Backend Developer</dd>
+      </div>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6">Email address</dt>
+        <dd class="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0">margotfoster@example.com</dd>
+      </div>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6">Salary expectation</dt>
+        <dd class="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0">$120,000</dd>
+      </div>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6">About</dt>
+        <dd class="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0">Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.</dd>
+      </div>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6">Attachments</dt>
+        <dd class="mt-2 text-sm sm:col-span-2 sm:mt-0">
+          <ul role="list" class="divide-y divide-gray-100 rounded-md border border-gray-200">
+            <li class="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
+              <div class="flex w-0 flex-1 items-center">
+                <svg class="h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M15.621 4.379a3 3 0 00-4.242 0l-7 7a3 3 0 004.241 4.243h.001l.497-.5a.75.75 0 011.064 1.057l-.498.501-.002.002a4.5 4.5 0 01-6.364-6.364l7-7a4.5 4.5 0 016.368 6.36l-3.455 3.553A2.625 2.625 0 119.52 9.52l3.45-3.451a.75.75 0 111.061 1.06l-3.45 3.451a1.125 1.125 0 001.587 1.595l3.454-3.553a3 3 0 000-4.242z" clip-rule="evenodd" />
+                </svg>
+                <div class="ml-4 flex min-w-0 flex-1 gap-2">
+                  <span class="truncate font-medium">resume_back_end_developer.pdf</span>
+                  <span class="flex-shrink-0 text-gray-400">2.4mb</span>
                 </div>
-            </div>
-            </div>
-        </div>
+              </div>
+              <div class="ml-4 flex-shrink-0">
+                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Download</a>
+              </div>
+            </li>
+            <li class="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
+              <div class="flex w-0 flex-1 items-center">
+                <svg class="h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M15.621 4.379a3 3 0 00-4.242 0l-7 7a3 3 0 004.241 4.243h.001l.497-.5a.75.75 0 011.064 1.057l-.498.501-.002.002a4.5 4.5 0 01-6.364-6.364l7-7a4.5 4.5 0 016.368 6.36l-3.455 3.553A2.625 2.625 0 119.52 9.52l3.45-3.451a.75.75 0 111.061 1.06l-3.45 3.451a1.125 1.125 0 001.587 1.595l3.454-3.553a3 3 0 000-4.242z" clip-rule="evenodd" />
+                </svg>
+                <div class="ml-4 flex min-w-0 flex-1 gap-2">
+                  <span class="truncate font-medium">coverletter_back_end_developer.pdf</span>
+                  <span class="flex-shrink-0 text-gray-400">4.5mb</span>
+                </div>
+              </div>
+              <div class="ml-4 flex-shrink-0">
+                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Download</a>
+              </div>
+            </li>
+          </ul>
+        </dd>
+      </div>
+    </dl>
+  </div>
+</div>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
     </div>
+  </div>
+</dialog>
+
+<div class="navbar bg-base-100">
+  <div class="flex-1">
+    <a class="btn btn-ghost text-xl">Acervo UFC</a>
+  </div>
+  
+  <div class="flex-none gap-2">
+    <div class="dropdown">
+        <div tabindex="0" role="button" class="btn m-1">
+            Escolher um Tema
+            <svg width="12px" height="12px" class="h-2 w-2 fill-current opacity-60 inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048"><path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path></svg>
+        </div>
+        <ul tabindex="0" class="dropdown-content z-[1] p-2 shadow-2xl bg-base-300 rounded-box w-52">
+            <li><input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Default" value="default"/></li>
+            <li><input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Retro" value="retro"/></li>
+            <li><input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Cyberpunk" value="cyberpunk"/></li>
+            <li><input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Valentine" value="valentine"/></li>
+            <li><input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Aqua" value="aqua"/></li>
+        </ul>
+        </div>
+    </div>  
+
+    <!-- <div class="form-control">
+      <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
+    </div> -->
+
+    <div class="dropdown dropdown-end">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+        <div class="w-10 rounded-full">
+          <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+        </div>
+      </div>
+      <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+        <li>
+          <a class="justify-between">
+            Profile
+            <span class="badge">New</span>
+          </a>
+        </li>
+        <li><a>Settings</a></li>
+        <li><a>Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="grid grid-cols-4 gap-2">
+    <div>
+        <label class="input input-bordered flex items-center gap-2 m-4">
+            <input type="text" id="searchInput" class="grow" placeholder="Buscar" />
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 opacity-70"><path fill-rule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clip-rule="evenodd" /></svg>
+        </label>
+    </div>
+    
+    <div class=" flex">
+        <div class="dropdown m-3">
+            <div tabindex="0" role="button" class="btn m-1">Escolher Categoria</div>
+            <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+            <li><a>Terceirização </a></li>
+            <li><a>Contrução Civil</a></li>
+            <li><a>Reforma</a></li>
+            <li><a>Pintura</a></li>
+            </ul>      
+        </div>
+        <div>
+            <!-- Abrir modal -->
+            <!-- <button class="btn m-4" onclick="my_modal_2.showModal()">Cadastrar Ata</button>           -->
+            <!-- Page content here -->
+            <label for="my-drawer-4" class="drawer-button btn btn-success m-4">Cadastrar</label>
+        </div>
+        
+    </div>
+</div>
+
+<div class="drawer drawer-end" style="z-index: 999999;">
+  <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
+  <div class="drawer-side">
+    <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
+    <ul class="menu p-4 w-100 min-h-full bg-base-200 text-base-content"> <!-- Increase width to w-96 -->
+        <h2>Cadastrar Ata</h2>    
+        
+        <span class="flex items-center gap-2 mx-4 mt-4">Cliente</span>
+        <label class="input input-bordered flex items-center gap-2 m-4">
+            <input type="text" class="grow" name="cliente" placeholder="Cliente" />
+        </label>
+        
+        <span class="flex items-center gap-2 mx-4 mt-4">UF</span>
+        <label class="input input-bordered flex items-center gap-2 m-4">
+            <input type="text" class="grow" name="uf" placeholder="UF" />
+        </label>
+
+        <span class="flex items-center gap-2 mx-4 mt-4">Nº Acervo</span>
+        <label class="input input-bordered flex items-center gap-2 m-4">
+            <input type="text" class="grow" name="numero_acervo" placeholder="Nº Acervo" />
+        </label>
+
+        <span class="flex items-center gap-2 mx-4 mt-4">Data Início</span>
+        <label class="input input-bordered flex items-center gap-2 m-4">
+            <input type="text" class="grow" name="data_inicio" placeholder="Data Início" />
+        </label>
+
+        <span class="flex items-center gap-2 mx-4 mt-4">Data Final</span>
+        <label class="input input-bordered flex items-center gap-2 m-4">
+            <input type="text" class="grow" name="data_final" placeholder="Data Final" />
+        </label>
+        
+        <span class="flex items-center gap-2 mx-4 mt-4">Descrição</span>
+        <textarea class="textarea textarea-bordered flex items-center gap-2 m-4" placeholder="Descrição"></textarea>
+        
+        <span class="flex items-center gap-2 mx-4 mt-4">Unidade</span>
+        <label class="input input-bordered flex items-center gap-2 m-4">
+            <input type="text" class="grow" name="unidade" placeholder="Unidade" />
+        </label>
+
+        <span class="flex items-center gap-2 mx-4 mt-4">Quantidade</span>
+        <label class="input input-bordered flex items-center gap-2 m-4">
+            <input type="text" class="grow" name="quantidade" placeholder="Quantidade" />
+        </label>
+
+        <input type="file" class="file-input file-input-bordered flex items-center gap-2 m-4" />
+
+        <button id="salvar" class="btn btn-outline btn-success flex items-center gap-2 m-4">Salvar</button>
+
+    </ul>
+  </div>
+</div>
+
+
+
+<div class="d-flex p-2">
+    <div class="overflow-x-auto">
+      <table class="table table-zebra">
+        <!-- head -->
+        <thead>
+          <tr>
+            <th>Detalhes</th>
+            <th>Cliente</th>
+            <th>UF</th>
+            <th>Nº Acervo</th>
+            <th>Data Iníco</th>
+            <th>Data Final</th>
+            <th>Descrição</th>
+            <th>Categorias</th>
+            <th>und</th>
+            <th>Qnt</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- row 1 -->
+            <tr>
+                <td><!-- You can open the modal using ID.showModal() method -->
+                    <button class="btn btn-primary" onclick="my_modal_4.showModal()">Detalhes</button>
+                </td>
+                <td>Departamento de Estradas de Rodagem</td>
+                <td>BA</td>
+                <td>214684/2024</td>
+                <td>01/12/2021</td>
+                <td>01/12/2022</td>
+                <td>Recapeamento de Rodovias</td>
+                <td>
+                    <ul>
+                    <li>Obras Rodoviárias</li>
+                    <li>Recapeamento</li>
+                    <li>Manutenção</li>
+                    </ul>
+                </td>
+                <td>MÊS</td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td><!-- You can open the modal using ID.showModal() method -->
+                    <button class="btn btn-primary" onclick="my_modal_4.showModal()">Detalhes</button>
+                </td>
+                <td>Companhia de Saneamento Básico</td>
+                <td>BA</td>
+                <td>214684/2024</td>
+                <td>01/12/2021</td>
+                <td>01/12/2022</td>
+                <td>Projeto de Estação de Tratamento de Água</td>
+                <td>
+                    <ul>
+                    <li>Saneamento</li>
+                    <li>Tratamento de Água</li>
+                    <li>Engenharia Ambiental</li>
+                    </ul>
+                </td>
+                <td>MÊS</td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td><!-- You can open the modal using ID.showModal() method -->
+                        <button class="btn btn-primary" onclick="my_modal_4.showModal()">Detalhes</button>
+                </td>
+                <td>Secretaria de Obras Públicas</td>
+                <td>BA</td>
+                <td>214684/2024</td>
+                <td>01/12/2021</td>
+                <td>01/12/2022</td>
+                <td>Construção de Escolas e Creches</td>
+                <td>
+                    <ul>
+                    <li>Construção Civil</li>
+                    <li>Educação</li>
+                    <li>Infraestrutura Urbana</li>
+                    </ul>
+                </td>
+                <td>MÊS</td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td><!-- You can open the modal using ID.showModal() method -->
+                    <button class="btn btn-primary" onclick="my_modal_4.showModal()">Detalhes</button>
+                </td>
+                <td>Companhia Energética</td>
+                <td>BA</td>
+                <td>214684/2024</td>
+                <td>01/12/2021</td>
+                <td>01/12/2022</td>
+                <td>Implantação de Linhas de Transmissão</td>
+                <td>
+                    <ul>
+                    <li>Energia Elétrica</li>
+                    <li>Transmissão</li>
+                    <li>Infraestrutura Energética</li>
+                    </ul>
+                </td>
+                <td>MÊS</td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td><!-- You can open the modal using ID.showModal() method -->
+                    <button class="btn btn-primary" onclick="my_modal_4.showModal()">Detalhes</button>
+                </td>
+                <td>Agência Nacional de Águas</td>
+                <td>BA</td>
+                <td>214684/2024</td>
+                <td>01/12/2021</td>
+                <td>01/12/2022</td>
+                <td>Estudo de Bacias Hidrográficas</td>
+                <td>
+                    <ul>
+                    <li>Recursos Hídricos</li>
+                    <li>Hidrologia</li>
+                    <li>Planejamento Ambiental</li>
+                    </ul>
+                </td>
+                <td>MÊS</td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td><!-- You can open the modal using ID.showModal() method -->
+                    <button class="btn btn-primary" onclick="my_modal_4.showModal()">Detalhes</button>
+                </td>
+                <td>Departamento de Aviação Civil</td>
+                <td>BA</td>
+                <td>214684/2024</td>
+                <td>01/12/2021</td>
+                <td>01/12/2022</td>
+                <td>Expansão de Aeroportos</td>
+                <td>
+                    <ul>
+                    <li>Aviação Civil</li>
+                    <li>Infraestrutura Aeroportuária</li>
+                    <li>Logística</li>
+                    </ul>
+                </td>
+                <td>MÊS</td>
+                <td>12</td>
+            <!-- </tr>
+            <tr>
+            <td>Empresa de Transporte Público</td>
+            <td>Implantação de Sistema de BRT</td>
+            <td>
+                <ul>
+                <li>Transporte Público</li>
+                <li>Urbanismo</li>
+                <li>Mobilidade Urbana</li>
+                </ul>
+            </td>
+            </tr>
+            <tr>
+            <td>Companhia de Gás Natural</td>
+            <td>Expansão de Rede de Distribuição de Gás</td>
+            <td>
+                <ul>
+                <li>Gás Natural</li>
+                <li>Infraestrutura de Energia</li>
+                <li>Distribuição</li>
+                </ul>
+            </td>
+            </tr>
+            <tr>
+            <td>Secretaria de Meio Ambiente</td>
+            <td>Recuperação de Áreas Degradadas</td>
+            <td>
+                <ul>
+                <li>Meio Ambiente</li>
+                <li>Recuperação Ambiental</li>
+                <li>Sustentabilidade</li>
+                </ul>
+            </td>
+            </tr>
+            <tr>
+            <td>Agência Nacional de Telecomunicações</td>
+            <td>Expansão de Redes de Fibra Óptica</td>
+            <td>
+                <ul>
+                <li>Telecomunicações</li>
+                <li>Redes de Comunicação</li>
+                <li>Infraestrutura de Telecom</li>
+                </ul>
+            </td>
+            </tr>
+            <tr>
+            <td>Departamento de Recursos Hídricos</td>
+            <td>Construção de Barragens</td>
+            <td>
+                <ul>
+                <li>Recursos Hídricos</li>
+                <li>Engenharia Hidráulica</li>
+                <li>Infraestrutura Hidroelétrica</li>
+                </ul>
+            </td>
+            </tr>
+            <tr>
+            <td>Empresa de Saneamento Ambiental</td>
+            <td>Implantação de Rede de Esgoto</td>
+            <td>
+                <ul>
+                <li>Saneamento</li>
+                <li>Esgotamento Sanitário</li>
+                <li>Infraestrutura Urbana</li>
+                </ul>
+            </td>
+            </tr>
+            <tr>
+            <td>Companhia de Desenvolvimento Urbano</td>
+            <td>Revitalização de Áreas Urbanas</td>
+            <td>
+                <ul>
+                <li>Urbanismo</li>
+                <li>Revitalização Urbana</li>
+                <li>Planejamento Urbano</li>
+                </ul>
+            </td>
+            </tr>
+            <tr>
+            <td>Agência Nacional de Energia Elétrica</td>
+            <td>Estudo de Impacto Ambiental para Usinas Hidrelétricas</td>
+            <td>
+                <ul>
+                <li>Energia Elétrica</li>
+                <li>Impacto Ambiental</li>
+                <li>Planejamento Energético</li>
+                </ul>
+            </td>
+            </tr>
+            <tr>
+            <td>Secretaria de Desenvolvimento Regional</td>
+            <td>Construção de Rodovias</td>
+            <td>
+                <ul>
+                <li>Infraestrutura Viária</li>
+                <li>Construção Civil</li>
+                <li>Desenvolvimento Regional</li>
+                </ul>
+            </td>
+            </tr>
+            <tr>
+            <td>Empresa de Energia Renovável</td>
+            <td>Instalação de Parques Eólicos</td>
+            <td>
+                <ul>
+                <li>Energia Renovável</li>
+                <li>Parques Eólicos</li>
+                <li>Infraestrutura Energética</li>
+                </ul>
+            </td>
+            </tr>
+            <tr>
+            <td>Agência Nacional de Petróleo</td>
+            <td>Exploração de Campos de Petróleo Offshore</td>
+            <td>
+                <ul>
+                <li>Petróleo</li>
+                <li>Exploração Offshore</li>
+                <li>Engenharia de Petróleo</li>
+                </ul>
+            </td>
+            </tr> -->
+        </tbody>
+      </table>
+    </div>
+</div>
+
+</body>
 </html>
